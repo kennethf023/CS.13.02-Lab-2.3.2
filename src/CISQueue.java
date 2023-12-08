@@ -1,8 +1,50 @@
 import java.util.Arrays;
 
 public class CISQueue {
+    private Integer[] queue;
+    private int size,front,back;
 
-    // Array property.
+    public CISQueue(int size) {
+        queue=new Integer[size];
+        this.size=0;
+        this.front=0;
+        this.back=-1;
+    }
+
+    public void enqueue(int num) {
+        back=(back+1)%queue.length;
+        queue[back]=num;
+        size++;
+    }
+
+    public Integer dequeue() {
+        if(isEmpty()){
+            return null;
+        }
+        int value=queue[front];
+        front=(front+1)%queue.length;
+        size--;
+        return value;
+    }
+
+    public boolean isEmpty() {
+        return size==0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public String toString() {
+        return "CISQueue{" +
+                "queue=" + Arrays.toString(queue) +
+                ", size=" + size +
+                ", pointer=" + back +
+                '}';
+    }
+
+        // Array property.
     
     // Size property.
     
